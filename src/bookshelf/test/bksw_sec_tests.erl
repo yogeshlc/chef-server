@@ -82,15 +82,15 @@ get_bucket_key_test() ->
 
 % get host and toggle the port (add port or remove it)
 get_host_toggleport_test() ->
-    Config0 = mini_s3:new("", "", "host"),
+    Config0 = mini_s3:new("", "", "host", path),
     "host:443" = bksw_sec:get_host_toggleport("host", Config0),
-    Config1 = mini_s3:new("", "", "host:123"),
+    Config1 = mini_s3:new("", "", "host:123", path),
     "host" = bksw_sec:get_host_toggleport("host:123", Config1),
-    Config2 = mini_s3:new("", "", "http://host"),
+    Config2 = mini_s3:new("", "", "http://host", path),
     "http://host:80" = bksw_sec:get_host_toggleport("http://host", Config2),
-    Config3 = mini_s3:new("", "", "http://host:123"),
+    Config3 = mini_s3:new("", "", "http://host:123", path),
     "http://host" = bksw_sec:get_host_toggleport("http://host:123", Config3),
-    Config4 = mini_s3:new("", "", "https://host:123"),
+    Config4 = mini_s3:new("", "", "https://host:123", path),
     "https://host" = bksw_sec:get_host_toggleport("https://host:123", Config4).
 
 % 100 seconds into the future from now should not be expired.
