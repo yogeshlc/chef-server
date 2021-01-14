@@ -165,6 +165,7 @@ aws_config(S3Url) ->
     {ok, S3SecretKeyId} = chef_secrets:get(<<"bookshelf">>, <<"secret_access_key">>),
     SslOpts = envy:get(chef_objects, s3_ssl_opts, [], list),
     PathOrVhost = envy:get(chef_objects, path_or_vhost, atom),
+io:format("~n~nchef_s3: url style = ~p~n", [PathOrVhost]),
     mini_s3:new(erlang:binary_to_list(S3AccessKeyId), erlang:binary_to_list(S3SecretKeyId), S3Url, PathOrVhost, SslOpts).
 
 %% @doc returns a url for accessing s3 internally. This is used
