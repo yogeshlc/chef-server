@@ -1,7 +1,7 @@
 
 describe "Testing Status API with config", :config do
   let (:config) { JSON.parse(IO.read("/etc/opscode/chef-server-running.json"))['private_chef'] }
-  context "Status API", :status, :smoke do
+  context "Status API", :status do
     it "GET /_status should respond with valid health data" do
       r = get("#{platform.server}/_status", superuser)
       r.should look_like(status_for_json: 200)
